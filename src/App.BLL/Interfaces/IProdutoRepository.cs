@@ -1,0 +1,16 @@
+﻿using App.BLL.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace App.BLL.Interfaces
+{
+    public interface IProdutoRepository : IRepository<Produto>
+    {
+        Task<IEnumerable<Produto>> ObterProdutosPorFornecedor(Guid fornecedorId);
+        Task<IEnumerable<Produto>> ObterProdutosFornecedores();
+        Task<Produto> ObterProdutosFornecedor(Guid id);
+    }
+}
