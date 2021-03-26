@@ -13,7 +13,7 @@ namespace App.Data.Repository
     {
         public ProdutoRepository(AppDbContext context) : base(context) { }
 
-        public async Task<Produto> ObterProdutosFornecedor(Guid id)
+        public async Task<Produto> ObterProdutoFornecedor(Guid id)
         {
             return await Db.Produtos.AsNoTracking().Include(f => f.Fornecedor)
                 .FirstOrDefaultAsync(p => p.Id == id);

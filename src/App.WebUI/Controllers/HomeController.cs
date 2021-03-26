@@ -1,4 +1,4 @@
-﻿using App.WebUI.Models;
+﻿using App.WebUI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
