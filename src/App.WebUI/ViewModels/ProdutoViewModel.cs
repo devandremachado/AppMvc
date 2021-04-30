@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using App.WebUI.Extensions;
+using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace App.WebUI.ViewModels
 {
@@ -33,6 +31,7 @@ namespace App.WebUI.ViewModels
 
         public string Imagem { get; set; }
 
+        [Moeda]
         [DisplayName("Valor")]
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public decimal Valor { get; set; }
