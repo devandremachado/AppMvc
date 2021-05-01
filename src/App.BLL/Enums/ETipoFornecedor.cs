@@ -7,6 +7,6 @@ namespace App.BLL.Enums
     public enum ETipoFornecedor
     {
         PessoaFisica = 1,
-        PessoaJurifica = 2
+        PessoaJuridica = 2
     }
 }

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using App.WebUI.ViewModels;
-using App.BLL.Interfaces;
 using AutoMapper;
 using App.BLL.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using App.BLL.Interfaces.Repositories;
+using App.BLL.Interfaces.Services;
+using App.BLL.Interfaces;
 
 namespace App.WebUI.Controllers
 {
@@ -15,14 +17,18 @@ namespace App.WebUI.Controllers
     {
         private readonly IProdutoRepository _produtoRepository;
         private readonly IFornecedorRepository _fornecedorRepository;
+        private readonly IProdutoService _produtoServices;
         private readonly IMapper _mapper;
 
         public ProdutosController(IProdutoRepository produtoRepository,
                                   IFornecedorRepository fornecedorRepository,
-                                  IMapper mapper)
+                                  IProdutoService produtoService,
+                                  IMapper mapper,
+                                  INotificador notificador) : base(notificador)
         {
             _produtoRepository = produtoRepository;
             _fornecedorRepository = fornecedorRepository;
+            _produtoServices = produtoService;
             _mapper = mapper;
         }
 
@@ -68,7 +74,9 @@ namespace App.WebUI.Controllers
 
             produtoViewModel.Imagem = imgPrefixo + produtoViewModel.ImagemUpload.FileName;
 
-            await _produtoRepository.Adicionar(_mapper.Map<Produto>(produtoViewModel));
+            await _produtoServices.Adicionar(_mapper.Map<Produto>(produtoViewModel));
+
+            if (!OperacaoValida()) return View(produtoViewModel);
 
             return RedirectToAction("Index");
         }
@@ -112,7 +120,9 @@ namespace App.WebUI.Controllers
             produtoAtualizacao.Valor = produtoViewModel.Valor;
             produtoAtualizacao.Ativo = produtoViewModel.Ativo;
 
-            await _produtoRepository.Atualizar(_mapper.Map<Produto>(produtoAtualizacao));
+            await _produtoServices.Atualizar(_mapper.Map<Produto>(produtoAtualizacao));
+
+            if (!OperacaoValida()) return View(produtoViewModel);
 
             return RedirectToAction("Index");
         }
@@ -132,11 +142,15 @@ namespace App.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var produtoViewModel = await ObterProduto(id);
+            var produto = await ObterProduto(id);
 
-            if (produtoViewModel == null) return NotFound();
+            if (produto == null) return NotFound();
 
-            await _produtoRepository.Remover(id);
+            await _produtoServices.Remover(id);
+
+            if (!OperacaoValida()) return View(produto);
+
+            TempData["Sucesso"] = "Produto excluído com sucesso!";
 
             return RedirectToAction("Index");
         }

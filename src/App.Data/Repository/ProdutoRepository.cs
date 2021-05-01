@@ -1,4 +1,4 @@
-﻿using App.BLL.Interfaces;
+﻿using App.BLL.Interfaces.Repositories;
 using App.BLL.Models;
 using App.Data.Context;
 using Microsoft.EntityFrameworkCore;

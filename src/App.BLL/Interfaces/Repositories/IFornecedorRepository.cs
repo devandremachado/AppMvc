@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.BLL.Interfaces
+namespace App.BLL.Interfaces.Repositories
 {
     public interface IFornecedorRepository : IRepository<Fornecedor>
     {

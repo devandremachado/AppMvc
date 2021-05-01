@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.BLL.Interfaces
+namespace App.BLL.Interfaces.Repositories
 {
     public interface IRepository<TEntidade> : IDisposable where TEntidade : EntidadeBase
     {
