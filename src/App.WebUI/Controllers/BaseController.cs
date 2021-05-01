@@ -1,4 +1,4 @@
-﻿using App.BLL.Interfaces;
+﻿using App.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.WebUI.Controllers

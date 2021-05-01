@@ -1,4 +1,4 @@
-using App.Data.Context;
+using App.Infra.Context;
 using App.WebUI.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,6 +31,8 @@ namespace App.WebUI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
             services.AddIdentityConfiguration(Configuration);
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -53,7 +55,8 @@ namespace App.WebUI
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/erro/500");
+                app.UseStatusCodePagesWithRedirects("erro/{0}");
                 app.UseHsts();
             }
 

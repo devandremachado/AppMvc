@@ -1,4 +1,4 @@
-﻿using App.BLL.Models;
+﻿using App.Domain.Models;
 using App.WebUI.ViewModels;
 using AutoMapper;
 

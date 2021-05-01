@@ -1,10 +1,10 @@
-﻿using App.BLL.Interfaces;
-using App.BLL.Interfaces.Repositories;
-using App.BLL.Interfaces.Services;
-using App.BLL.Notificacoes;
-using App.BLL.Services;
-using App.Data.Context;
-using App.Data.Repository;
+﻿using App.Domain.Interfaces;
+using App.Domain.Interfaces.Repositories;
+using App.Domain.Interfaces.Services;
+using App.Domain.Notificacoes;
+using App.Domain.Services;
+using App.Infra.Context;
+using App.Infra.Repository;
 using App.WebUI.Extensions;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.Extensions.DependencyInjection;

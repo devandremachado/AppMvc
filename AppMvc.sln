@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain", "src\App.BLL\App.Domain.csproj", "{08935927-D22B-4448-82FE-D847FD82B362}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain", "src\App.Domain\App.Domain.csproj", "{08935927-D22B-4448-82FE-D847FD82B362}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Infra", "src\App.Data\App.Infra.csproj", "{9061E970-8E04-4C18-98F0-AD8D4BADB4D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Infra", "src\App.Infra\App.Infra.csproj", "{9061E970-8E04-4C18-98F0-AD8D4BADB4D4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.WebUI", "src\App.WebUI\App.WebUI.csproj", "{D683B876-F3C0-42BF-94BF-5C9CDD7CE9F5}"
 EndProject

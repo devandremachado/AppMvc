@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace App.WebUI.Configurations
 {
@@ -19,6 +20,11 @@ namespace App.WebUI.Configurations
                 o.ModelBindingMessageProvider.SetValueIsInvalidAccessor((x) => "O valor preenchido é inválido para este campo");
                 o.ModelBindingMessageProvider.SetValueMustBeANumberAccessor(x => "O campo deve ser númerico.");
                 o.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(x => "Este campo precisa ser preenchido.");
+
+                //Definido aqui de forma global o [ValidateAntiForgeryToken] para todo request.
+                //Sem essa definição, deve-se "ancorar" o attributo [ValidateAntiForgeryToken] em cada action da controller.
+                o.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+
             })
             .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Latest);
 
