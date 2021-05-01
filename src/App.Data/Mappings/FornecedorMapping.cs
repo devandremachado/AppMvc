@@ -21,11 +21,11 @@ namespace App.Data.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(14)");
 
-            // Relação 1 : 1 => Fornecedor possui um Endereco 
+            // 1 : 1 => Fornecedor possui um Endereco 
             builder.HasOne(f => f.Endereco)
                 .WithOne(e => e.Fornecedor);
 
-            // Relação 1 : N => Fornecedor possui muitos Produtos
+            // 1 : N => Fornecedor possui muitos Produtos
             builder.HasMany(f => f.Produtos)
                .WithOne(p => p.Fornecedor)
                .HasForeignKey(p => p.FornecedorId);

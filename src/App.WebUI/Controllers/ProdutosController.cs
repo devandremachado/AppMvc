@@ -10,9 +10,12 @@ using System.IO;
 using App.BLL.Interfaces.Repositories;
 using App.BLL.Interfaces.Services;
 using App.BLL.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using App.WebUI.Extensions;
 
 namespace App.WebUI.Controllers
 {
+    [Authorize]
     public class ProdutosController : BaseController
     {
         private readonly IProdutoRepository _produtoRepository;
@@ -32,13 +35,15 @@ namespace App.WebUI.Controllers
             _mapper = mapper;
         }
 
+        [AllowAnonymous]
         [Route("lista-de-produtos")]
         public async Task<IActionResult> Index()
         {
             return View(_mapper.Map<IEnumerable<ProdutoViewModel>>(await _produtoRepository.ObterProdutosFornecedores()));
         }
 
-        [Route("dados-do-produto/{id:guid}")]
+        [AllowAnonymous]
+        [Route("detalhes-do-produto/{id:guid}")]
         public async Task<IActionResult> Details(Guid id)
         {
             var produtoViewModel = await ObterProduto(id);
@@ -48,6 +53,7 @@ namespace App.WebUI.Controllers
             return View(produtoViewModel);
         }
 
+        [ClaimsAuthorize("Produto","Adicionar")]
         [Route("novo-produto")]
         public async Task<IActionResult> Create()
         {
@@ -56,6 +62,7 @@ namespace App.WebUI.Controllers
             return View(produtoViewModel);
         }
 
+        [ClaimsAuthorize("Produto", "Adicionar")]
         [Route("novo-produto")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -81,6 +88,7 @@ namespace App.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+        [ClaimsAuthorize("Produto", "Editar")]
         [Route("editar-produto/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -91,6 +99,7 @@ namespace App.WebUI.Controllers
             return View(produtoViewModel);
         }
 
+        [ClaimsAuthorize("Produto", "Editar")]
         [Route("editar-produto/{id:guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -127,6 +136,7 @@ namespace App.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+        [ClaimsAuthorize("Produto", "Excluir")]
         [Route("excluir-produto/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -137,6 +147,7 @@ namespace App.WebUI.Controllers
             return View(produtoViewModel);
         }
 
+        [ClaimsAuthorize("Produto", "Excluir")]
         [Route("excluir-produto/{id:guid}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

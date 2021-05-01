@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace App.WebUI.Extensions
+namespace App.WebUI.Extensions.Components
 {
     public class SummaryViewComponent : ViewComponent
     {

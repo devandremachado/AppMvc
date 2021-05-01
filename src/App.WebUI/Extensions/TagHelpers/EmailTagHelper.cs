@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Threading.Tasks;
 
-namespace App.WebUI.Extensions
+namespace App.WebUI.Extensions.TagHelpers
 {
     public class EmailTagHelper : TagHelper
     {
